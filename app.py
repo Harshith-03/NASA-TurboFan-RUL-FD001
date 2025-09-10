@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 import joblib
 from sklearn.metrics import mean_squared_error, mean_absolute_error
-
+from skops.io import load as skops_load
 # ----------------------------
 # Paths & constants
 # ----------------------------
@@ -13,10 +13,16 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "FD001"
 MODEL_DIR = BASE_DIR / "models"
 
-# Use your saved model (prefer tuned if present)
-MODEL_PATH = (MODEL_DIR / "rul_baseline_gbr_tuned.pkl"
-              if (MODEL_DIR / "rul_baseline_gbr_tuned.pkl").exists()
-              else MODEL_DIR / "rul_baseline_gbr.pkl")
+MODEL_PATH_SKOPS = MODEL_DIR / "rul_baseline_gbr_tuned.skops"
+if not MODEL_PATH_SKOPS.exists():
+    MODEL_PATH_SKOPS = MODEL_DIR / "rul_baseline_gbr.skops"
+
+try:
+    model = skops_load(MODEL_PATH_SKOPS, trusted=True)
+except Exception as e:
+    st.error(f"Could not load SKOPS model: {e}")
+    st.stop()
+
 SCALER_PATH = MODEL_DIR / "scaler.pkl"
 
 ROLL_WINDOWS = (5, 15, 30)   # match your notebook
