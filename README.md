@@ -77,7 +77,7 @@ Gradient Boosting with capped labels performed best.
 ---
 
 ## Dashboard
-The final dashboard is deployed with **Streamlit**.  
+The final dashboard is deployed with [**Streamlit**](https://nasa-turbofan-rul-fd001-27tu77kqv9b3hwm7zxbqew.streamlit.app/)
 Features:
 - Displays engine health trajectories.  
 - Predicts RUL for unseen test units.  
