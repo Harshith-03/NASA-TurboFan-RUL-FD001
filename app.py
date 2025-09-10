@@ -20,10 +20,11 @@ MODEL_PATH = Path(
         filename="rul_baseline_gbr.skops"
     )
 )
-
+assert MODEL_PATH.suffix == ".skops", f"Expected .skops, got {MODEL_PATH.suffix}"
 model = skops_load(MODEL_PATH, trusted=True)
 
 SCALER_PATH = MODEL_DIR / "scaler.pkl"
+scaler = joblib.load(SCALER_PATH)
 
 ROLL_WINDOWS = (5, 15, 30)   # match your notebook
 VAR_THRESH = 1e-8            # match your notebook
@@ -171,7 +172,6 @@ if not SCALER_PATH.exists() or not MODEL_PATH.exists():
     st.stop()
 
 scaler = joblib.load(SCALER_PATH)
-model  = joblib.load(MODEL_PATH)
 
 train_scaled = train_f.copy()
 test_scaled  = test_f.copy()
