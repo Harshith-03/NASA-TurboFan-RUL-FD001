@@ -4,3 +4,4 @@ numpy==1.26.4
 scikit-learn==1.3.2
 joblib==1.3.2
 matplotlib==3.8.4
+skops==0.9.0
