@@ -14,9 +14,11 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "FD001"
 MODEL_DIR = BASE_DIR / "models"
 
-MODEL_PATH = hf_hub_download(
-    repo_id="Harshith2503/nasa-turbofan-rul",  # your repo
-    filename="rul_baseline_gbr.skops"
+MODEL_PATH = Path(
+    hf_hub_download(
+        repo_id="Harshith2503/nasa-turbofan-rul",  # your repo
+        filename="rul_baseline_gbr.skops"
+    )
 )
 
 model = skops_load(MODEL_PATH, trusted=True)
