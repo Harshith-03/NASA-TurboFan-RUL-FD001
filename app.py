@@ -15,7 +15,7 @@ DATA_DIR = BASE_DIR / "data" / "FD001"
 MODEL_DIR = BASE_DIR / "models"
 
 MODEL_PATH = hf_hub_download(
-    repo_id="your-username/nasa-turbofan-rul",  # your repo
+    repo_id="Harshith2503/nasa-turbofan-rul",  # your repo
     filename="rul_baseline_gbr.skops"
 )
 
