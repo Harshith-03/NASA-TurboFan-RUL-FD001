@@ -7,7 +7,7 @@ I built machine learning models to estimate how many cycles an engine has left b
 ---
 
 ## Dataset
-- **Source**: [NASA C-MAPSS Turbofan Degradation Dataset](https://www.nasa.gov/content/prognostics-center-of-excellence-data-set-repository)  
+- **Source**: [NASA C-MAPSS Turbofan Degradation Dataset](https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data)
 - **Files used**: `train_FD001.txt`, `test_FD001.txt`, `RUL_FD001.txt`  
 - **Features**:
   - Operational settings (e.g., altitude, Mach number, throttle resolver angle)
