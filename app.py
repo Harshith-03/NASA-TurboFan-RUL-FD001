@@ -6,6 +6,7 @@ import streamlit as st
 import joblib
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from skops.io import load as skops_load
+from huggingface_hub import hf_hub_download
 # ----------------------------
 # Paths & constants
 # ----------------------------
@@ -13,15 +14,12 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "FD001"
 MODEL_DIR = BASE_DIR / "models"
 
-MODEL_PATH_SKOPS = MODEL_DIR / "rul_baseline_gbr_tuned.skops"
-if not MODEL_PATH_SKOPS.exists():
-    MODEL_PATH_SKOPS = MODEL_DIR / "rul_baseline_gbr.skops"
+MODEL_PATH = hf_hub_download(
+    repo_id="your-username/nasa-turbofan-rul",  # your repo
+    filename="rul_baseline_gbr.skops"
+)
 
-try:
-    model = skops_load(MODEL_PATH_SKOPS, trusted=True)
-except Exception as e:
-    st.error(f"Could not load SKOPS model: {e}")
-    st.stop()
+model = skops_load(MODEL_PATH, trusted=True)
 
 SCALER_PATH = MODEL_DIR / "scaler.pkl"
 
